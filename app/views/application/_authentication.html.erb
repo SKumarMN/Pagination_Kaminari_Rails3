@@ -1,0 +1,13 @@
+<p>
+  <%= debug(current_user) %>
+  <% if current_user %>
+    Welcome <%= current_user.name %>! |
+    <%= link_to 'Signout', signout_path %>
+    
+    <% else %>
+    <%= link_to 'Login', '/auth/identity' %> |
+    <%= link_to 'Create Account', '/auth/identity/register' %>
+  <% end %>
+  
+</p>
+<hr/>

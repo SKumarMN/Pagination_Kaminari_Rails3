@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
+  
+  before_filter :check_login, :except => [:index, :show]
   def index
     @products = Product.order(:name).page(params[:page])
     #@products = Product.order(:name).page(params[:page]).per(5).padding(3)
