@@ -3,7 +3,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def current_user
+  
     if(session[:user_id])
+     
       @current_user ||= User.find(session[:user_id])
     else
       @current_user = nil
@@ -11,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
   
   def check_login
-    unless logged_in?
+    unless authorized?
       redirect_to "/auth/identity"
     end
   end
@@ -23,4 +25,9 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+  
+  protected
+    def authorized?
+      logged_in? && ( current_user.admin?)
+    end
 end

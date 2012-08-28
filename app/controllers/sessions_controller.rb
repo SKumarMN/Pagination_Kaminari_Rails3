@@ -13,12 +13,14 @@ class SessionsController < ApplicationController
          
     end
     session[:user_id] = user.id
+   
     redirect_to root_url, :notice =>"Welcome!"
   end
   
   def destroy
     session[:user_id] = nil
     redirect_to root_url, :notice =>"Good Bye!"
+  
   end
   
 end
